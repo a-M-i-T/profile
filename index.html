@@ -1,28 +1,309 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Profile</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 50px;
-        }
-        h1 {
-            color: #333;
-        }
-        p {
-            font-size: 18px;
-            color: #666;
-        }
-    </style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Amit Arya</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 </head>
+
 <body>
-    <h1>Amit Arya</h1>
-    <p>Senior Programmer at Miracle Interface</p>
-    <p>Full Stack Developer at Shubhu Tech</p>
-    <p>Passionate about creating microservices and custom Laravel packages.</p>
 </body>
+
 </html>
+
+
+<script type="text/javascript">
+
+    (function () {
+        var openComment, styles, time, writeStyleChar, writeStyles;
+
+        styles = ` 
+
+body {
+  background-color: #1a1c24; color: #fff;
+  font-size: 13px; line-height: 1.4;
+  -webkit-font-smoothing: subpixel-antialiased;
+}
+
+pre { 
+  position: fixed; width: 48%;
+  top: 30px; bottom: 30px; left: 26%;
+  transition: left 500ms;
+  overflow: auto;
+  background-color: #313744; color: #a6c3d4;
+  border: 1px solid rgba(0,0,0,0.2);
+  padding: 24px 12px;
+  box-sizing: border-box;
+  border-radius: 3px;
+  box-shadow: 0px 4px 0px 2px rgba(0,0,0,0.1);
+}
+
+
+/* 
+ * Syntax highlighting 
+ * Colors based on Base16 Ocean Dark
+ */
+
+pre em:not(.comment) { font-style: normal; }
+
+.comment       { color: #707e84; }
+.selector      { color: #c66c75; }
+.selector .key { color: #c66c75; }
+.key           { color: #c7ccd4; }
+.value         { color: #d5927b; }
+
+
+pre { left: 50%; }
+
+
+#heart, #echo { 
+  position: fixed;
+  width: 300px; height: 300px;
+  top: calc(50% - 150px); left: calc(25% - 150px);
+  text-align: center;
+  -webkit-transform: scale(0.95);
+          transform: scale(0.95);
+}
+
+#heart { z-index: 8; }
+#echo  { z-index: 7; }
+
+#heart::before, #heart::after, #echo::before, #echo::after {
+    content: '';
+    position: absolute;
+    top: 40px;
+    width: 150px; height: 240px;
+    background: #c66c75;
+    border-radius: 150px 150px 0 0;
+    -webkit-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+    -webkit-transform-origin: 0 100%;
+            transform-origin: 0 100%;
+}
+
+#heart::before, #echo::before {
+  left: 150px;
+}
+
+#heart::after, #echo::after {
+  left: 0;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  -webkit-transform-origin: 100% 100%;
+          transform-origin: 100% 100%;
+}
+
+
+#heart::after { 
+  box-shadow:
+    inset -6px -6px 0px 6px rgba(255,255,255,0.1);
+}
+
+#heart::before { 
+  box-shadow:
+    inset 6px 6px 0px 6px rgba(255,255,255,0.1);
+}
+
+
+#heart i::before {
+  content: 'Send some love';
+  position: absolute;
+  z-index: 9;
+  width: 100%;
+  top: 35%; left: 0;
+  font-style: normal;
+  color: rgba(255,255,255,0.8);
+  font-weight: 100;
+  font-size: 30px;
+  text-shadow: -1px -1px 0px rgba(0,0,0,0.2);
+}
+
+
+@-webkit-keyframes heartbeat {
+  0%, 100% { 
+    -webkit-transform: scale(0.95); 
+            transform: scale(0.95); 
+  }
+  50% { 
+    -webkit-transform: scale(1.00); 
+            transform: scale(1.00); 
+  }
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(0.95); }
+  50%      { transform: scale(1.00); }
+}
+
+@-webkit-keyframes echo {
+  0%   { 
+    opacity: 0.1;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  100% { 
+    opacity: 0;
+    -webkit-transform: scale(1.4);
+            transform: scale(1.4);
+  }
+}
+
+@keyframes echo {
+  0%   { 
+    opacity: 0.1;
+    transform: scale(1);
+  }
+  100% { 
+    opacity: 0;
+    transform: scale(1.4);
+  }
+}
+
+
+#heart, #echo {
+  -webkit-animation-duration: 2000ms;
+          animation-duration: 2000ms;
+  -webkit-animation-timing-function: 
+    cubic-bezier(0, 0, 0, 1.74);
+          animation-timing-function: 
+            cubic-bezier(0, 0, 0, 1.74);
+  -webkit-animation-delay: 500ms;
+          animation-delay: 500ms;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  -webkit-animation-play-state: paused;
+          animation-play-state: paused;
+}
+
+#heart { 
+  -webkit-animation-name: heartbeat; 
+          animation-name: heartbeat; 
+}
+#echo { 
+  -webkit-animation-name: echo; 
+          animation-name: echo; 
+}
+
+
+#heart, #echo {
+
+  
+  -webkit-animation-play-state: running;
+          animation-play-state: running;
+  
+}
+
+`;
+
+        texts = ` 
+ /*
+ * Hi there 🙋‍♂️
+ * This is Amit
+ * 🌱 I’m currently learning Laravel-11 Vilt Stack
+ * 🔭 I’m also working on POS System and Ec Projects built with Laravel
+ * 🤝 I’m looking to collaborate on NodeJs projects
+ * 📫 How to reach me: mailtoamit44@gmail.com / +977 9808957627
+ */
+
+ /* ...                  
+ *
+ * ...hello?            
+ *
+ * You can also visit my linkedin profile         
+ *
+ * https://www.linkedin.com/in/arya-amit           
+ *
+ * oh wait....                      
+ *
+ *
+ * Here is my github account
+ * https://github.com/a-M-i-T
+ *
+ *
+ * https://a-m-i-t.github.io/profile/
+ * This is my github page
+ * 
+ * Bye 👋 see you around!!!
+ */
+ `;
+
+        openComment = false;
+
+        writeStyleChar = function (which) {
+            // begin wrapping open comments
+            if (which === '/' && openComment === false) {
+                openComment = true;
+            }
+            return $('#style-tag').append(which);
+        };
+
+        writeTextChar = function (which) {
+            // begin wrapping open comments
+            if (which === '/' && openComment === false) {
+                openComment = true;
+                styles = $('#text').html() + which;
+            } else if (which === '/' && openComment === true) {
+                openComment = false;
+                styles = $('#text').html().replace(/(\/[^\/]*\*)$/, '<em class="comment">$1/</em>');
+                // wrap style declaration
+            } else if (which === ':') {
+                styles = $('#text').html().replace(/([a-zA-Z- ^\n]*)$/, '<em class="key">$1</em>:');
+                // wrap style value 
+            } else if (which === ';') {
+                styles = $('#text').html().replace(/([^:]*)$/, '<em class="value">$1</em>;');
+                // wrap selector
+            } else if (which === '{') {
+                styles = $('#text').html().replace(/(.*)$/, '<em class="selector">$1</em>{');
+            } else {
+                styles = $('#text').html() + which;
+            }
+            $('#text').html(styles);
+        };
+
+        writeStyles = function (message, index, interval) {
+            var pre;
+            if (index < message.length) {
+                pre = document.getElementById('text');
+                pre.scrollTop = pre.scrollHeight;
+                writeStyleChar(message[index++]);
+                return setTimeout((function () {
+                    return writeStyles(message, index, interval);
+                }), interval);
+            } else {
+                alert('finish');
+            }
+        };
+
+        writeText = function (message, index, interval) {
+            var pre;
+            if (index < message.length) {
+                pre = document.getElementById('text');
+                pre.scrollTop = pre.scrollHeight;
+                writeTextChar(message[index++]);
+                return setTimeout((function () {
+                    return writeText(message, index, interval);
+                }), interval);
+            }
+        };
+
+
+        // appending the tags I'll need.
+        $('body').append(`  <style id="style-tag"></style>
+<span id="echo"></span>
+<span id="heart"><i></i></span>
+<pre id="text"></pre>`);
+
+        // faster typing in small iframe on codepen homepage
+        time = window.innerWidth <= 578 ? 4 : 16;
+
+
+        // starting it off
+        writeStyles(styles, 0, time);
+        writeText(texts, 0, time);
+
+
+    }).call(this);
+
+</script>
