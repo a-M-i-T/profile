@@ -59,6 +59,20 @@ https://templatemo.com/tm-531-reflux
   </script>
 
   <style>
+    /* custom site scrolling */
+    body::-webkit-scrollbar {
+      width: 0.2em;
+    }
+
+    body::-webkit-scrollbar-track {
+      -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    }
+
+    body::-webkit-scrollbar-thumb {
+      background-color: #222;
+      outline: 1px solid #222;
+    }
+
     #more_shubhu,
     #more_dvi,
     #more_mi {
@@ -95,7 +109,8 @@ https://templatemo.com/tm-531-reflux
           <div class="author-content">
             <h4>Amit Arya</h4>
             <span>Web Developer</span><br>
-            <span><i class="fa fa-envelope"></i> mailtoamit44@gmail.com</span><br>
+            <span><i class="fa fa-envelope"></i><a href="mailto:mailtoamit44@gmail.com">
+                mailtoamit44@gmail.com</a></span><br>
             <span><i class="fa fa-phone"></i> +977 9808957627</span><br>
             <span><i class="fa fa-map-marker"></i> Kathmandu, Nepal</span>
           </div>
@@ -116,10 +131,10 @@ https://templatemo.com/tm-531-reflux
                 <a href="#"><i class="fa fa-twitter"></i></a>
               </li> -->
               <li>
-                <a href="http://www.linkedin.com/in/arya-amit"><i class="fa fa-linkedin"></i></a>
+                <a href="http://www.linkedin.com/in/arya-amit" target="_blank"><i class="fa fa-linkedin"></i></a>
               </li>
               <li>
-                <a href="https://github.com/a-M-i-T"><i class="fa fa-github"></i></a>
+                <a href="https://github.com/a-M-i-T" target="_blank"><i class="fa fa-github"></i></a>
               </li>
               <!-- <li>
                 <a href="#"><i class="fa fa-dribbble"></i></a>
@@ -462,7 +477,7 @@ https://templatemo.com/tm-531-reflux
                   </div>
                   <div class="col-md-6">
                     <fieldset>
-                      <input name="user_email" type="text" class="form-control" id="email" placeholder="Your email..."
+                      <input name="user_email" type="email" class="form-control" id="email" placeholder="Your email..."
                         required="" />
                     </fieldset>
                   </div>
