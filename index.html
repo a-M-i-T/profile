@@ -1,309 +1,600 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Amit Arya</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900" rel="stylesheet" />
+
+  <title>Amit Arya</title>
+  <!--
+Reflux Template
+https://templatemo.com/tm-531-reflux
+-->
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+
+  <!-- Additional CSS Files -->
+  <link rel="stylesheet" href="assets/css/fontawesome.css" />
+  <link rel="stylesheet" href="assets/css/templatemo-style.css" />
+  <link rel="stylesheet" href="assets/css/owl.css" />
+  <link rel="stylesheet" href="assets/css/lightbox.css" />
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script type="text/javascript">
+    (function () {
+      // https://dashboard.emailjs.com/admin/account
+      emailjs.init({
+        publicKey: "OOInw5GMWwZ7TQOHw",
+      });
+    })();
+  </script>
+
+  <script type="text/javascript">
+    window.onload = function () {
+      document.getElementById('contact').addEventListener('submit', function (event) {
+        event.preventDefault();
+        // these IDs from the previous steps
+        emailjs.sendForm('service_n2cs2nn', 'template_7izr1t9', this)
+          .then(() => {
+            Swal.fire({
+              title: 'Success!',
+              text: 'Thank you for contacting!',
+              icon: 'success',
+              confirmButtonText: 'Cool'
+            })
+          }, (error) => {
+            Swal.fire({
+              title: 'Error!',
+              text: 'Something went wrong!',
+              icon: 'error',
+              confirmButtonText: 'Close'
+            })
+          });
+      });
+    }
+  </script>
+
+  <style>
+    #more_shubhu,
+    #more_dvi,
+    #more_mi {
+      display: none;
+    }
+
+    .left-image-post {
+      margin-top: 60px;
+      padding-top: 60px;
+      border-top: 2px solid rgba(250, 250, 250, 0.1);
+    }
+
+    .skills:hover {
+      color: #000;
+    }
+
+    .last-item {
+      text-align: center;
+    }
+  </style>
 </head>
 
 <body>
+  <div id="page-wraper">
+    <!-- Sidebar Menu -->
+    <div class="responsive-nav">
+      <i class="fa fa-bars" id="menu-toggle"></i>
+      <div id="menu" class="menu">
+        <i class="fa fa-times" id="menu-close"></i>
+        <div class="container">
+          <div class="image">
+            <a href="#"><img src="assets/images/aa.png" alt="" /></a>
+          </div>
+          <div class="author-content">
+            <h4>Amit Arya</h4>
+            <span>Web Developer</span>
+          </div>
+          <nav class="main-nav" role="navigation">
+            <ul class="main-menu">
+              <li><a href="#section1">About Me</a></li>
+              <li><a href="#section2">Skills</a></li>
+              <li><a href="#section3">My Work</a></li>
+              <li><a href="#section4">Contact Me</a></li>
+            </ul>
+          </nav>
+          <div class="social-network">
+            <ul class="soial-icons">
+              <li>
+                <a href="https://fb.com/templatemo"><i class="fa fa-facebook"></i></a>
+              </li>
+              <li>
+                <a href="#"><i class="fa fa-twitter"></i></a>
+              </li>
+              <li>
+                <a href="#"><i class="fa fa-linkedin"></i></a>
+              </li>
+              <li>
+                <a href="#"><i class="fa fa-dribbble"></i></a>
+              </li>
+              <li>
+                <a href="#"><i class="fa fa-rss"></i></a>
+              </li>
+            </ul>
+          </div>
+          <div class="copyright-text">
+            <p>Copyright 2019 Reflux Design</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="section about-me" data-section="section1">
+      <div class="container">
+        <div class="section-heading">
+          <h2>About Me</h2>
+          <div class="line-dec"></div>
+          <!-- <span
+              >This is a Bootstrap v4.2.1 CSS Template for you. Edit and use
+              this layout for your site. Updated on 21 May 2019 for repeated main menu HTML code.</span
+            > -->
+          <ul class="list-group list-group-flush">
+            <li>🌱 I’m currently learning Laravel-11 Vilt Stack</li>
+            <li>🔭 I’m also working on POS System and Ec Projects built with Laravel</li>
+            <li>🤝 I’m looking to collaborate on NodeJs projects</li>
+            <li>📫 How to reach me: <a href="https://www.linkedin.com/in/arya-amit/" rel="nofollow">A Mit</a></li>
+          </ul>
+        </div>
+        <div class="section-heading">
+          <h2>Work Experience</h2>
+          <div class="line-dec"></div>
+          <div class="left-image-post">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="left-image">
+                  <img src="assets/images/shubhu.jpeg" alt="" />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="right-text">
+                  <h4>Shubhu Tech Pvt. Ltd.</h4>
+                  <p>
+                    At Shubhu Tech, I had the opportunity to create both microservices and custom Laravel packages as
+                    part of my role as a full stack developer.
+                    <span id="dots_shubhu">...</span><span id="more_shubhu">
+                      Creating microservices involved breaking down the company's applications into smaller, more
+                      manageable services that could operate independently and communicate through APIs. This
+                      architectural approach provided benefits such as scalability, flexibility, and easier maintenance.
+
+                      Additionally, I created custom Laravel packages, which are reusable components or libraries that
+                      extend the functionality of the Laravel framework. These packages could include functionalities
+                      like
+                      custom authentication methods, utility classes, API integrations, or any other features specific
+                      to
+                      the company's needs. Using custom Laravel packages allowed for code reuse, modular development,
+                      and
+                      streamlined maintenance across different projects within the company.</span>
+                  </p>
+                  <div class="white-button">
+                    <a href="javascript:void(0)" onclick="readMoreShubhu()" id="read_more_shubhu">Read More</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="right-image-post">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="left-text">
+                  <h4>Davariable Innovations</h4>
+                  <p>
+                    Starting a company during the COVID-19 pandemic was a challenging but ambitious endeavor. Amidst the
+                    uncertainties and disruptions caused by the pandemic, I saw an opportunity to innovate and create
+                    something meaningful. <span id="dots_dvi">...</span><span id="more_dvi">
+                      With a vision and passion for entrepreneurship, I took the bold step of
+                      founding my own company, hoping to make a positive impact and adapt to the changing business
+                      landscape.
+                      However, despite careful planning, dedication, and hard work, the journey did not go as expected.
+                      The pandemic brought unforeseen challenges such as economic downturns, supply chain disruptions,
+                      and
+                      shifts in consumer behavior. These factors, combined with limited resources and market
+                      uncertainties, made it difficult to sustain and grow the company as initially envisioned.
+
+                      Despite the setbacks and challenges faced, the experience provided valuable lessons in resilience,
+                      adaptability, and perseverance. It highlighted the importance of strategic planning, agility, and
+                      innovation in navigating uncertain times and building a successful business. While the venture may
+                      not have achieved the desired outcome, the experience served as a valuable learning opportunity
+                      for
+                      future endeavors and growth.</span>
+                  </p>
+                  <div class="white-button">
+                    <a href="javascript:void(0)" onclick="readMoreDvi()" id="read_more_dvi">Read More</a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="right-image">
+                  <img src="assets/images/dvi.png" alt="" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="left-image-post">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="left-image">
+                  <img src="assets/images/miracle.png" alt="" />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="right-text">
+                  <h4>Miracle Interface</h4>
+                  <p>
+                    Miracle Interface is a global technology company with its head office located in Japan and a
+                    prominent branch office situated in Kathmandu, Nepal.
+                    <span id="dots_mi">...</span><span id="more_mi">
+                      As a senior programmer at Miracle Interface in Kathmandu, I had the opportunity to work on
+                      significant projects originating from Japan, contributing to the development of web applications
+                      that were pivotal in the company's success.
+                      My role involved not only coding and software development but also mentoring junior developers,
+                      sharing knowledge, and fostering a culture of continuous learning and growth within the
+                      team.</span>
+                  </p>
+                  <div class="white-button">
+                    <a href="javascript:void(0)" onclick="readMoreMi()" id="read_more_mi">Read More</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="section my-services" data-section="section2">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Skills</h2>
+          <div class="line-dec"></div>
+          <!-- <span>Curabitur leo felis, rutrum vitae varius eu, malesuada a tortor.
+            Vestibulum congue leo et tellus aliquam, eu viverra nulla semper.
+            Nullam eu faucibus diam. Donec eget massa ante.</span> -->
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="service-item skills">
+              <!-- <i class="fa fa-code"></i> -->
+              <h4>Programming Languages</h4>
+              <ul class="list-group list-group-flush">
+                <li>PHP</li>
+                <li>Javascript</li>
+                <li>Node.js</li>
+                <li>Python</li>
+                <li>C,C++</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="service-item skills">
+              <h4>Frameworks / CMS</h4>
+              <ul class="list-group list-group-flush">
+                <li>Laravel (PHP framework)</li>
+                <li>Yii1/Yii2 (PHP framework)</li>
+                <li>Codeignitor</li>
+                <li>Express Js</li>
+                <li>Wordpress</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="service-item skills">
+              <h4>Database</h4>
+              <ul class="list-group list-group-flush">
+                <li>MySQL/PostgreSQL (relational)</li>
+                <li>MongoDB (NoSQL)</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="service-item skills">
+              <h4>Version Contro / Tools</h4>
+              <ul class="list-group list-group-flush">
+                <li>Git, Tortoise Git</li>
+                <li>Source Tree</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="service-item skills">
+              <h4>IDEs</h4>
+              <ul class="list-group list-group-flush">
+                <li>Visual Studio Code</li>
+                <li>Php Storm</li>
+                <li>Sublime Text</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="service-item skills">
+              <h4>Collaboration Tools</h4>
+              <ul class="list-group list-group-flush">
+                <li>Teams</li>
+                <li>Phabricator</li>
+                <li>ClickUp</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="service-item skills last-item">
+              <h4>Frontend Development</h4>
+              <p>Html/Css, Vue, Angular, Jquery/Ajax, Photoshop, Canva, Figma, Rest Api</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section my-work" data-section="section3">
+      <div class="container">
+        <div class="section-heading">
+          <h2>My Work</h2>
+          <div class="line-dec"></div>
+          <!-- <span>Aenean sollicitudin ex mauris, lobortis lobortis diam euismod sit
+            amet. Duis ac elit vulputate, lobortis arcu quis, vehicula
+            mauris.</span> -->
+        </div>
+        <div class="row">
+          <div class="isotope-wrapper">
+            <form class="isotope-toolbar">
+              <label><input type="radio" data-type="*" checked="" name="isotope-filter" />
+                <span>all</span></label>
+              <label><input type="radio" data-type="cms" name="isotope-filter" />
+                <span>cms</span></label>
+              <label><input type="radio" data-type="ec" name="isotope-filter" />
+                <span>ec</span></label>
+              <label><input type="radio" data-type="apps" name="isotope-filter" />
+                <span>apps</span></label>
+            </form>
+            <div class="isotope-box">
+              <div class="isotope-item" data-type="cms">
+                <figure class="snip1321">
+                  <img src="assets/images/bighnaharta_site.png" alt="sq-sample26" />
+                  <figcaption>
+                    <a href="assets/images/bighnaharta_site.png" data-lightbox="image-1" data-title="Caption"><i
+                        class="fa fa-search"></i></a>
+                    <h4>Bighnaharta Nepal</h4>
+                    <span>Website developed for Non-Profit Organization</span>
+                  </figcaption>
+                </figure>
+              </div>
+
+              <div class="isotope-item" data-type="cms">
+                <figure class="snip1321">
+                  <img src="assets/images/getgo_site.png" alt="sq-sample26" />
+                  <figcaption>
+                    <a href="assets/images/getgo_site.png" data-lightbox="image-1" data-title="Caption"><i
+                        class="fa fa-search"></i></a>
+                    <h4>GetGo Adventures</h4>
+                    <span>Website developed for Travel and Tours</span>
+                  </figcaption>
+                </figure>
+              </div>
+
+              <div class="isotope-item" data-type="ec">
+                <figure class="snip1321">
+                  <img src="assets/images/tiuntarkari_ec.png" alt="sq-sample26" />
+                  <figcaption>
+                    <a href="assets/images/tiuntarkari_ec.png" data-lightbox="image-1" data-title="Caption"><i
+                        class="fa fa-search"></i></a>
+                    <h4>Tiun Tarkari - Ecommerce</h4>
+                    <span>Ecommerce Website developed for Online Grocery</span>
+                  </figcaption>
+                </figure>
+              </div>
+
+              <div class="isotope-item" data-type="apps">
+                <figure class="snip1321">
+                  <img src="assets/images/tiuntarkari_pos_site.png" alt="sq-sample26" />
+                  <figcaption>
+                    <a href="assets/images/tiuntarkari_pos_site.png" data-lightbox="image-1" data-title="Caption"><i
+                        class="fa fa-search"></i></a>
+                    <h4>Tiun Tarkari - POS</h4>
+                    <span>Point of Sale built with Laravel</span>
+                  </figcaption>
+                </figure>
+              </div>
+
+              <div class="isotope-item" data-type="cms">
+                <figure class="snip1321">
+                  <img src="assets/images/piubella_site.png" alt="sq-sample26" />
+                  <figcaption>
+                    <a href="assets/images/piubella_site.png" data-lightbox="image-1" data-title="Caption"><i
+                        class="fa fa-search"></i></a>
+                    <h4>Piubella</h4>
+                    <span>Website developed for Italian Olive Oil Distributers</span>
+                  </figcaption>
+                </figure>
+              </div>
+
+              <div class="isotope-item" data-type="apps">
+                <figure class="snip1321">
+                  <img src="assets/images/sahakarijal_site.png" alt="sq-sample26" />
+                  <figcaption>
+                    <a href="assets/images/sahakarijal_site.png" data-lightbox="image-1" data-title="Caption"><i
+                        class="fa fa-search"></i></a>
+                    <h4>Sahakari Jal</h4>
+                    <span>Website developed for Drinking Water Suppliers</span>
+                  </figcaption>
+                </figure>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section contact-me" data-section="section4">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Contact Me</h2>
+          <div class="line-dec"></div>
+          <span>Fusce eget nibh nec justo interdum condimentum. Morbi justo ex,
+            efficitur at ante ac, tincidunt maximus ligula. Lorem ipsum dolor
+            sit amet, consectetur adipiscing elit.</span>
+        </div>
+        <div class="row">
+          <div class="right-content">
+            <div class="container">
+              <form id="contact">
+                <div class="row">
+                  <div class="col-md-6">
+                    <fieldset>
+                      <input type="hidden" name="to_name" value="Amit">
+                      <input name="user_name" type="text" class="form-control" id="name" placeholder="Your name..."
+                        required="" />
+                    </fieldset>
+                  </div>
+                  <div class="col-md-6">
+                    <fieldset>
+                      <input name="user_email" type="text" class="form-control" id="email" placeholder="Your email..."
+                        required="" />
+                    </fieldset>
+                  </div>
+                  <div class="col-md-12">
+                    <fieldset>
+                      <input name="subject" type="text" class="form-control" id="subject" placeholder="Subject..."
+                        required="" />
+                    </fieldset>
+                  </div>
+                  <div class="col-md-12">
+                    <fieldset>
+                      <textarea name="message" rows="6" class="form-control" id="message" placeholder="Your message..."
+                        required=""></textarea>
+                    </fieldset>
+                  </div>
+                  <div class="col-md-12">
+                    <fieldset>
+                      <button type="submit" id="form-submit" class="button">
+                        Send Message
+                      </button>
+                    </fieldset>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Scripts -->
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <script src="assets/js/isotope.min.js"></script>
+  <script src="assets/js/owl-carousel.js"></script>
+  <script src="assets/js/lightbox.js"></script>
+  <script src="assets/js/custom.js"></script>
+  <script>
+
+    function readMoreShubhu() {
+      var dots = document.getElementById("dots_shubhu");
+      var moreText = document.getElementById("more_shubhu");
+      var btnText = document.getElementById("read_more_shubhu");
+
+      if (dots.style.display === "none") {
+        dots.style.display = "inline";
+        btnText.innerHTML = "Read more";
+        moreText.style.display = "none";
+      } else {
+        dots.style.display = "none";
+        btnText.innerHTML = "Read less";
+        moreText.style.display = "inline";
+      }
+    }
+    function readMoreDvi() {
+      var dots = document.getElementById("dots_dvi");
+      var moreText = document.getElementById("more_dvi");
+      var btnText = document.getElementById("read_more_dvi");
+
+      if (dots.style.display === "none") {
+        dots.style.display = "inline";
+        btnText.innerHTML = "Read more";
+        moreText.style.display = "none";
+      } else {
+        dots.style.display = "none";
+        btnText.innerHTML = "Read less";
+        moreText.style.display = "inline";
+      }
+    }
+    function readMoreMi() {
+      var dots = document.getElementById("dots_mi");
+      var moreText = document.getElementById("more_mi");
+      var btnText = document.getElementById("read_more_mi");
+
+      if (dots.style.display === "none") {
+        dots.style.display = "inline";
+        btnText.innerHTML = "Read more";
+        moreText.style.display = "none";
+      } else {
+        dots.style.display = "none";
+        btnText.innerHTML = "Read less";
+        moreText.style.display = "inline";
+      }
+    }
+    //according to loftblog tut
+    $(".main-menu li:first").addClass("active");
+
+    var showSection = function showSection(section, isAnimate) {
+      var direction = section.replace(/#/, ""),
+        reqSection = $(".section").filter(
+          '[data-section="' + direction + '"]'
+        ),
+        reqSectionPos = reqSection.offset().top - 0;
+
+      if (isAnimate) {
+        $("body, html").animate(
+          {
+            scrollTop: reqSectionPos
+          },
+          800
+        );
+      } else {
+        $("body, html").scrollTop(reqSectionPos);
+      }
+    };
+
+    var checkSection = function checkSection() {
+      $(".section").each(function () {
+        var $this = $(this),
+          topEdge = $this.offset().top - 80,
+          bottomEdge = topEdge + $this.height(),
+          wScroll = $(window).scrollTop();
+        if (topEdge < wScroll && bottomEdge > wScroll) {
+          var currentId = $this.data("section"),
+            reqLink = $("a").filter("[href*=\\#" + currentId + "]");
+          reqLink
+            .closest("li")
+            .addClass("active")
+            .siblings()
+            .removeClass("active");
+        }
+      });
+    };
+
+    $(".main-menu").on("click", "a", function (e) {
+      e.preventDefault();
+      showSection($(this).attr("href"), true);
+    });
+
+    $(window).scroll(function () {
+      checkSection();
+    });
+  </script>
 </body>
 
 </html>
-
-
-<script type="text/javascript">
-
-    (function () {
-        var openComment, styles, time, writeStyleChar, writeStyles;
-
-        styles = ` 
-
-body {
-  background-color: #1a1c24; color: #fff;
-  font-size: 13px; line-height: 1.4;
-  -webkit-font-smoothing: subpixel-antialiased;
-}
-
-pre { 
-  position: fixed; width: 48%;
-  top: 30px; bottom: 30px; left: 26%;
-  transition: left 500ms;
-  overflow: auto;
-  background-color: #313744; color: #a6c3d4;
-  border: 1px solid rgba(0,0,0,0.2);
-  padding: 24px 12px;
-  box-sizing: border-box;
-  border-radius: 3px;
-  box-shadow: 0px 4px 0px 2px rgba(0,0,0,0.1);
-}
-
-
-/* 
- * Syntax highlighting 
- * Colors based on Base16 Ocean Dark
- */
-
-pre em:not(.comment) { font-style: normal; }
-
-.comment       { color: #707e84; }
-.selector      { color: #c66c75; }
-.selector .key { color: #c66c75; }
-.key           { color: #c7ccd4; }
-.value         { color: #d5927b; }
-
-
-pre { left: 50%; }
-
-
-#heart, #echo { 
-  position: fixed;
-  width: 300px; height: 300px;
-  top: calc(50% - 150px); left: calc(25% - 150px);
-  text-align: center;
-  -webkit-transform: scale(0.95);
-          transform: scale(0.95);
-}
-
-#heart { z-index: 8; }
-#echo  { z-index: 7; }
-
-#heart::before, #heart::after, #echo::before, #echo::after {
-    content: '';
-    position: absolute;
-    top: 40px;
-    width: 150px; height: 240px;
-    background: #c66c75;
-    border-radius: 150px 150px 0 0;
-    -webkit-transform: rotate(-45deg);
-            transform: rotate(-45deg);
-    -webkit-transform-origin: 0 100%;
-            transform-origin: 0 100%;
-}
-
-#heart::before, #echo::before {
-  left: 150px;
-}
-
-#heart::after, #echo::after {
-  left: 0;
-  -webkit-transform: rotate(45deg);
-          transform: rotate(45deg);
-  -webkit-transform-origin: 100% 100%;
-          transform-origin: 100% 100%;
-}
-
-
-#heart::after { 
-  box-shadow:
-    inset -6px -6px 0px 6px rgba(255,255,255,0.1);
-}
-
-#heart::before { 
-  box-shadow:
-    inset 6px 6px 0px 6px rgba(255,255,255,0.1);
-}
-
-
-#heart i::before {
-  content: 'Send some love';
-  position: absolute;
-  z-index: 9;
-  width: 100%;
-  top: 35%; left: 0;
-  font-style: normal;
-  color: rgba(255,255,255,0.8);
-  font-weight: 100;
-  font-size: 30px;
-  text-shadow: -1px -1px 0px rgba(0,0,0,0.2);
-}
-
-
-@-webkit-keyframes heartbeat {
-  0%, 100% { 
-    -webkit-transform: scale(0.95); 
-            transform: scale(0.95); 
-  }
-  50% { 
-    -webkit-transform: scale(1.00); 
-            transform: scale(1.00); 
-  }
-}
-
-@keyframes heartbeat {
-  0%, 100% { transform: scale(0.95); }
-  50%      { transform: scale(1.00); }
-}
-
-@-webkit-keyframes echo {
-  0%   { 
-    opacity: 0.1;
-    -webkit-transform: scale(1);
-            transform: scale(1);
-  }
-  100% { 
-    opacity: 0;
-    -webkit-transform: scale(1.4);
-            transform: scale(1.4);
-  }
-}
-
-@keyframes echo {
-  0%   { 
-    opacity: 0.1;
-    transform: scale(1);
-  }
-  100% { 
-    opacity: 0;
-    transform: scale(1.4);
-  }
-}
-
-
-#heart, #echo {
-  -webkit-animation-duration: 2000ms;
-          animation-duration: 2000ms;
-  -webkit-animation-timing-function: 
-    cubic-bezier(0, 0, 0, 1.74);
-          animation-timing-function: 
-            cubic-bezier(0, 0, 0, 1.74);
-  -webkit-animation-delay: 500ms;
-          animation-delay: 500ms;
-  -webkit-animation-iteration-count: infinite;
-          animation-iteration-count: infinite;
-  -webkit-animation-play-state: paused;
-          animation-play-state: paused;
-}
-
-#heart { 
-  -webkit-animation-name: heartbeat; 
-          animation-name: heartbeat; 
-}
-#echo { 
-  -webkit-animation-name: echo; 
-          animation-name: echo; 
-}
-
-
-#heart, #echo {
-
-  
-  -webkit-animation-play-state: running;
-          animation-play-state: running;
-  
-}
-
-`;
-
-        texts = ` 
- /*
- * Hi there 🙋‍♂️
- * This is Amit
- * 🌱 I’m currently learning Laravel-11 Vilt Stack
- * 🔭 I’m also working on POS System and Ec Projects built with Laravel
- * 🤝 I’m looking to collaborate on NodeJs projects
- * 📫 How to reach me: mailtoamit44@gmail.com // +977 9808957627
- */
-
- /* ...                  
- *
- * ...hello?            
- *
- * You can also visit my linkedin profile         
- *
- * https://www.linkedin.com/in//arya-amit           
- *
- * oh wait....                      
- *
- *
- * Here is my github account
- * https://github.com//a-M-i-T
- *
- *
- * https://a-m-i-t.github.io/profile/
- * This is my github page
- * 
- * Bye 👋 see you around!!!
- */
- `;
-
-        openComment = false;
-
-        writeStyleChar = function (which) {
-            // begin wrapping open comments
-            if (which === '/' && openComment === false) {
-                openComment = true;
-            }
-            return $('#style-tag').append(which);
-        };
-
-        writeTextChar = function (which) {
-            // begin wrapping open comments
-            if (which === '/' && openComment === false) {
-                openComment = true;
-                styles = $('#text').html() + which;
-            } else if (which === '/' && openComment === true) {
-                openComment = false;
-                styles = $('#text').html().replace(/(\/[^\/]*\*)$/, '<em class="comment">$1/</em>');
-                // wrap style declaration
-            } else if (which === ':') {
-                styles = $('#text').html().replace(/([a-zA-Z- ^\n]*)$/, '<em class="key">$1</em>:');
-                // wrap style value 
-            } else if (which === ';') {
-                styles = $('#text').html().replace(/([^:]*)$/, '<em class="value">$1</em>;');
-                // wrap selector
-            } else if (which === '{') {
-                styles = $('#text').html().replace(/(.*)$/, '<em class="selector">$1</em>{');
-            } else {
-                styles = $('#text').html() + which;
-            }
-            $('#text').html(styles);
-        };
-
-        writeStyles = function (message, index, interval) {
-            var pre;
-            if (index < message.length) {
-                pre = document.getElementById('text');
-                pre.scrollTop = pre.scrollHeight;
-                writeStyleChar(message[index++]);
-                return setTimeout((function () {
-                    return writeStyles(message, index, interval);
-                }), interval);
-            } else {
-                alert('finish');
-            }
-        };
-
-        writeText = function (message, index, interval) {
-            var pre;
-            if (index < message.length) {
-                pre = document.getElementById('text');
-                pre.scrollTop = pre.scrollHeight;
-                writeTextChar(message[index++]);
-                return setTimeout((function () {
-                    return writeText(message, index, interval);
-                }), interval);
-            }
-        };
-
-
-        // appending the tags I'll need.
-        $('body').append(`  <style id="style-tag"></style>
-<span id="echo"></span>
-<span id="heart"><i></i></span>
-<pre id="text"></pre>`);
-
-        // faster typing in small iframe on codepen homepage
-        time = window.innerWidth <= 578 ? 4 : 16;
-
-
-        // starting it off
-        writeStyles(styles, 0, time);
-        writeText(texts, 0, time);
-
-
-    }).call(this);
-
-</script>
