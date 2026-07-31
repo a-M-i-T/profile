@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Amit Arya — Resume</title>
+  <style>
+    @page { size: A4; margin: 0; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      width: 210mm;
+      height: 297mm;
+      font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+      font-size: 9.5pt;
+      color: #222;
+      background: #fff;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    .page {
+      display: flex;
+      width: 210mm;
+      min-height: 297mm;
+      height: 297mm;
+    }
+
+    /* ===== LEFT SIDEBAR ===== */
+    .sidebar {
+      width: 72mm;
+      background: #111;
+      color: #fff;
+      padding: 14mm 7mm 10mm;
+      position: relative;
+    }
+    .sidebar::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 2px;
+      height: 100%;
+      background: #c11b1b;
+    }
+    .photo-wrap {
+      text-align: center;
+      margin-bottom: 14px;
+    }
+    .photo-wrap img {
+      width: 88px;
+      height: 88px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #c11b1b;
+      display: block;
+      margin: 0 auto;
+    }
+    .contact-list {
+      list-style: none;
+      margin-bottom: 18px;
+    }
+    .contact-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      margin-bottom: 9px;
+      font-size: 8pt;
+      line-height: 1.35;
+      color: #e8e8e8;
+      word-break: break-word;
+    }
+    .contact-list a {
+      color: #e8e8e8;
+      text-decoration: none;
+    }
+    .icon-circle {
+      flex-shrink: 0;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #c11b1b;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 1px;
+    }
+    .icon-circle svg {
+      width: 9px;
+      height: 9px;
+      fill: #fff;
+    }
+    .side-section { margin-bottom: 12px; }
+    .side-title {
+      font-size: 10pt;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      border-bottom: 1px solid rgba(255,255,255,0.45);
+      padding-bottom: 4px;
+      margin-bottom: 10px;
+    }
+    .edu-item { margin-bottom: 12px; }
+    .edu-item h4 {
+      font-size: 8.5pt;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 2px;
+      line-height: 1.3;
+    }
+    .edu-item p {
+      font-size: 8pt;
+      color: #d0d0d0;
+      line-height: 1.35;
+    }
+    .edu-item .loc {
+      color: #a8a8a8;
+      font-size: 7.5pt;
+    }
+    .sub-title {
+      font-size: 8pt;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin: 10px 0 5px;
+      color: #fff;
+    }
+    .side-list {
+      list-style: none;
+      padding: 0;
+    }
+    .side-list li {
+      position: relative;
+      padding-left: 12px;
+      margin-bottom: 4px;
+      font-size: 8pt;
+      color: #e0e0e0;
+      line-height: 1.35;
+    }
+    .side-list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 6px;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #c9a227;
+    }
+
+    /* ===== MAIN CONTENT ===== */
+    .main {
+      flex: 1;
+      padding: 14mm 12mm 10mm 11mm;
+      background: #fff;
+    }
+    .name {
+      font-size: 28pt;
+      font-weight: 700;
+      line-height: 1.05;
+      margin-bottom: 4px;
+      letter-spacing: 0.5px;
+    }
+    .name .first { color: #111; }
+    .name .last { color: #c11b1b; }
+    .role {
+      font-size: 11pt;
+      color: #444;
+      letter-spacing: 3px;
+      margin-bottom: 4px;
+      font-weight: 500;
+    }
+    .open-badge {
+      display: inline-block;
+      font-size: 8pt;
+      color: #166534;
+      font-weight: 600;
+      margin-bottom: 14px;
+      letter-spacing: 0.3px;
+    }
+    .section { margin-bottom: 10px; }
+    .job { margin-bottom: 9px; }
+    .job li {
+      font-size: 8.2pt;
+      color: #333;
+      line-height: 1.35;
+      margin-bottom: 1px;
+    }
+    .section-title {
+      font-size: 11pt;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #c11b1b;
+      border-bottom: 1px solid #d8d8d8;
+      padding-bottom: 4px;
+      margin-bottom: 8px;
+    }
+    .summary p {
+      font-size: 9pt;
+      line-height: 1.45;
+      color: #333;
+      text-align: justify;
+    }
+    .job-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 10px;
+    }
+    .job-company {
+      font-size: 10pt;
+      font-weight: 700;
+      color: #111;
+    }
+    .job-dates {
+      font-size: 9pt;
+      font-weight: 600;
+      color: #444;
+      white-space: nowrap;
+    }
+    .job-title {
+      font-size: 9.5pt;
+      font-style: italic;
+      color: #c11b1b;
+      margin: 1px 0 4px;
+    }
+    .job-desc {
+      font-size: 8.5pt;
+      color: #444;
+      line-height: 1.4;
+      margin-bottom: 4px;
+    }
+    .job ul {
+      margin-left: 14px;
+      padding: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <!-- LEFT SIDEBAR -->
+    <aside class="sidebar">
+      <div class="photo-wrap">
+        <img src="../images/aa.png" alt="Amit Arya" />
+      </div>
+
+      <ul class="contact-list">
+        <li>
+          <span class="icon-circle"><svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1.1-.2 1.2.4 2.5.6 3.8.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.6.6 3.8.1.4 0 .8-.3 1.1L6.6 10.8z"/></svg></span>
+          <span>+977 9808957627</span>
+        </li>
+        <li>
+          <span class="icon-circle"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg></span>
+          <span><a href="mailto:mailtoamit44@gmail.com">mailtoamit44@gmail.com</a></span>
+        </li>
+        <li>
+          <span class="icon-circle"><svg viewBox="0 0 24 24"><path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zM8.3 18.3H5.7V9.7h2.6v8.6zM7 8.4a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm11.3 9.9h-2.6v-4.2c0-1-.4-1.7-1.4-1.7-.7 0-1.2.5-1.4 1-.1.2-.1.5-.1.8v4.1H9.9s.0-6.6 0-7.3h2.6v1c.3-.6 1-1.4 2.5-1.4 1.8 0 3.2 1.2 3.2 3.7v4z"/></svg></span>
+          <span><a href="https://www.linkedin.com/in/arya-amit/">linkedin.com/in/arya-amit</a></span>
+        </li>
+        <li>
+          <span class="icon-circle"><svg viewBox="0 0 24 24"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z"/></svg></span>
+          <span>Kapan, Kathmandu, Nepal</span>
+        </li>
+        <li>
+          <span class="icon-circle"><svg viewBox="0 0 24 24"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.6-4-1.6-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.4 11.4 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.9 1.2 3.2 0 4.7-2.8 5.7-5.5 6 .4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3z"/></svg></span>
+          <span><a href="https://github.com/a-M-i-T">github.com/a-M-i-T</a></span>
+        </li>
+      </ul>
+
+      <div class="side-section">
+        <div class="side-title">Education</div>
+        <div class="edu-item">
+          <h4>Bachelor of Computer Application</h4>
+          <p>Lovely Professional University</p>
+          <p class="loc">Phagwara, Punjab, INDIA</p>
+        </div>
+        <div class="edu-item">
+          <h4>Higher Secondary (+2)</h4>
+          <p>College of Applied Business</p>
+          <p class="loc">Tangal Durbar, Kathmandu</p>
+        </div>
+      </div>
+
+      <div class="side-section">
+        <div class="side-title">Expertise</div>
+
+        <div class="sub-title">Professional</div>
+        <ul class="side-list">
+          <li>End-to-End Feature Ownership</li>
+          <li>ER Diagrams &amp; API Contracts</li>
+          <li>Technical Design Documents</li>
+          <li>AI-Assisted Development</li>
+          <li>Application Security</li>
+        </ul>
+
+        <div class="sub-title">Technical</div>
+        <ul class="side-list">
+          <li>PHP 8.x (raw PHP, OOP, PDO)</li>
+          <li>MySQL — schema, indexing, tuning</li>
+          <li>jQuery / AJAX / Fetch API</li>
+          <li>Bootstrap 5, HTML5 / CSS3</li>
+          <li>REST APIs, Stripe, webhooks</li>
+          <li>SQLi / XSS / CSRF prevention</li>
+          <li>Composer, PHPUnit, Redis, Git</li>
+          <li>GitHub Actions, Nginx / Apache</li>
+          <li>AWS (EC2, RDS, S3, IAM — working knowledge)</li>
+          <li>Cursor, Claude (Anthropic)</li>
+          <li>Laravel / Yii / CodeIgniter (as needed)</li>
+          <li>Docker, Linux / Bash</li>
+        </ul>
+
+        <div class="sub-title">Certification</div>
+        <ul class="side-list">
+          <li>Advance PHP/MySQL</li>
+          <li>Laravel, AI Tools Workshop</li>
+        </ul>
+
+        <div class="sub-title">Project</div>
+        <ul class="side-list">
+          <li><strong>Sajilo Restro</strong> — QR contactless restaurant ordering</li>
+          <li><strong>Clinic OS (Lighthouse)</strong> — therapy clinic OS</li>
+          <li><strong>Ledger Flow (BFMS)</strong> — bookkeeping firm management</li>
+          <li>POS, Ecommerce, CMS platforms</li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- RIGHT MAIN -->
+    <main class="main">
+      <div class="name">
+        <span class="first">Amit</span> <span class="last">Arya</span>
+      </div>
+      <div class="role">Senior PHP Full Stack Engineer</div>
+      <div class="open-badge">Open to new opportunities</div>
+
+      <div class="section">
+        <div class="section-title">Summary</div>
+        <div class="summary">
+          <p>
+            Senior PHP Full Stack Engineer with 10+ years building production web platforms in PHP and MySQL.
+            Strong in PHP 8.x fundamentals (OOP, namespacing, sessions, PDO prepared statements), MySQL schema design,
+            jQuery/AJAX/Fetch API, Bootstrap 5, and REST integrations. Prevents SQL injection, XSS, and CSRF; designs
+            with ER diagrams and API contracts before coding. Recently shipped billing features on TestRail’s GBS
+            (subscriptions, Stripe, CRM sync). Uses Cursor and Claude (Anthropic) with security review gates —
+            architecture-first, not framework-dependent. AWS working knowledge: EC2, RDS, S3, IAM.
+          </p>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Recent Projects</div>
+        <div class="job">
+          <ul>
+            <li><strong>Sajilo Restro</strong> — QR-based contactless restaurant ordering (full-stack PHP / Vue)</li>
+            <li><strong>Clinic OS (Lighthouse)</strong> — therapy clinic operating system (React, Node, Postgres)</li>
+            <li><strong>Ledger Flow (BFMS)</strong> — bookkeeping firm management system</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Work Experience</div>
+
+        <div class="job">
+          <div class="job-top">
+            <div class="job-company">Gurock — TestRail (GBS)</div>
+            <div class="job-dates">2024 – 2025</div>
+          </div>
+          <div class="job-title">PHP Full Stack Engineer (remote; concurrent with Empire)</div>
+          <p class="job-desc">
+            GBS is the billing and operations platform behind TestRail’s Customer Portal and Admin Panel
+            (Idera / formerly Gurock Software).
+          </p>
+          <ul>
+            <li>Owned end-to-end PHP/MySQL features for subscription, order, and license workflows.</li>
+            <li>Integrated Stripe payments, AI Credits, and HubSpot/Zendesk APIs and webhooks.</li>
+            <li>Debugged production CRM sync and email delivery failures; hardened data handling and edge cases.</li>
+            <li>Applied secure coding practices — input validation, session handling, and least-privilege data access.</li>
+          </ul>
+        </div>
+
+        <div class="job">
+          <div class="job-top">
+            <div class="job-company">Empire International &amp; Empire Sports</div>
+            <div class="job-dates">Sep 2024 – Present</div>
+          </div>
+          <div class="job-title">Team Lead</div>
+          <p class="job-desc">
+            Australia/Nepal education consultancy; also involved in Nepal Premier League (Sudurpaschim Royals).
+            Lead delivery, technical direction, and team practices across web platforms (role overlaps Gurock engagement).
+          </p>
+          <ul>
+            <li>Lead feature delivery and code quality standards across PHP/MySQL web platforms.</li>
+            <li>Drive AI-assisted development practices with review gates for correctness and security.</li>
+          </ul>
+        </div>
+
+        <div class="job">
+          <div class="job-top">
+            <div class="job-company">Shubhu Tech Pvt. Ltd.</div>
+            <div class="job-dates">Aug 2022 – Feb 2024</div>
+          </div>
+          <div class="job-title">Web Developer</div>
+          <p class="job-desc">
+            US-based software company building developer tools and platform components.
+          </p>
+          <ul>
+            <li>Built microservices and reusable PHP packages; designed REST API contracts across services.</li>
+            <li>Full-stack delivery with PHP, MySQL, JavaScript, and jQuery/AJAX — independent feature ownership.</li>
+            <li>Used Composer, Git, and Redis; wrote technical notes before implementing non-trivial features.</li>
+          </ul>
+        </div>
+
+        <div class="job">
+          <div class="job-top">
+            <div class="job-company">Davariable Innovations</div>
+            <div class="job-dates">Dec 2019 – Jun 2022</div>
+          </div>
+          <div class="job-title">Web Developer</div>
+          <p class="job-desc">
+            Technology startup focused on scalable IT solutions; product direction and web application delivery.
+          </p>
+          <ul>
+            <li>Designed MySQL schemas and shipped full-stack PHP applications; improved query performance.</li>
+            <li>Built Bootstrap + jQuery/AJAX UIs; owned requirements-to-delivery for customer-facing tools.</li>
+          </ul>
+        </div>
+
+        <div class="job">
+          <div class="job-top">
+            <div class="job-company">Miracle Interface</div>
+            <div class="job-dates">Oct 2014 – Sep 2019</div>
+          </div>
+          <div class="job-title">Sr. Programmer</div>
+          <p class="job-desc">
+            Global technology company (Japan HQ, Kathmandu branch). Deep foundation in PHP/MySQL production systems.
+          </p>
+          <ul>
+            <li>5 years building PHP applications, MySQL schemas/indexes, and jQuery/AJAX + Bootstrap UIs.</li>
+            <li>Practiced secure coding — SQL injection prevention via prepared statements, XSS escaping, CSRF tokens.</li>
+            <li>Deployed and maintained apps on Linux with Nginx/Apache; used Git for version control.</li>
+          </ul>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
+</html>
