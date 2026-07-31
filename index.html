@@ -60,6 +60,13 @@ https://templatemo.com/tm-531-reflux
 
   <style>
     /* custom site scrolling */
+    html, body {
+      overflow-x: hidden;
+      overflow-y: auto;
+      height: auto;
+      min-height: 100%;
+    }
+
     body::-webkit-scrollbar {
       width: 0.2em;
     }
@@ -141,6 +148,21 @@ https://templatemo.com/tm-531-reflux
     .contact-info a:hover {
       text-decoration: underline;
       /* Add underline on hover */
+    }
+
+    /* Keep work-experience logos readable, not full-column */
+    .left-image img,
+    .right-image img {
+      width: auto;
+      max-width: 100%;
+      max-height: 180px;
+      height: auto;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+      background: #fff;
+      padding: 12px;
+      border-radius: 6px;
     }
   </style>
 </head>

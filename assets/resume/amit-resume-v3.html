@@ -8,9 +8,9 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html, body {
       width: 210mm;
-      height: 297mm;
+      min-height: 297mm;
       font-family: "Segoe UI", Arial, Helvetica, sans-serif;
-      font-size: 9.5pt;
+      font-size: 9pt;
       color: #222;
       background: #fff;
       -webkit-print-color-adjust: exact;
@@ -20,16 +20,16 @@
       display: flex;
       width: 210mm;
       min-height: 297mm;
-      height: 297mm;
     }
 
     /* ===== LEFT SIDEBAR ===== */
     .sidebar {
-      width: 72mm;
+      width: 70mm;
       background: #111;
       color: #fff;
-      padding: 14mm 7mm 10mm;
+      padding: 11mm 6mm 9mm;
       position: relative;
+      flex-shrink: 0;
     }
     .sidebar::after {
       content: "";
@@ -42,11 +42,11 @@
     }
     .photo-wrap {
       text-align: center;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
     .photo-wrap img {
-      width: 88px;
-      height: 88px;
+      width: 78px;
+      height: 78px;
       border-radius: 50%;
       object-fit: cover;
       border: 2px solid #c11b1b;
@@ -55,14 +55,14 @@
     }
     .contact-list {
       list-style: none;
-      margin-bottom: 18px;
+      margin-bottom: 14px;
     }
     .contact-list li {
       display: flex;
       align-items: flex-start;
-      gap: 8px;
-      margin-bottom: 9px;
-      font-size: 8pt;
+      gap: 7px;
+      margin-bottom: 7px;
+      font-size: 7.5pt;
       line-height: 1.35;
       color: #e8e8e8;
       word-break: break-word;
@@ -73,54 +73,53 @@
     }
     .icon-circle {
       flex-shrink: 0;
-      width: 18px;
-      height: 18px;
+      width: 16px;
+      height: 16px;
       border-radius: 50%;
       background: #c11b1b;
-      color: #fff;
       display: flex;
       align-items: center;
       justify-content: center;
       margin-top: 1px;
     }
     .icon-circle svg {
-      width: 9px;
-      height: 9px;
+      width: 8px;
+      height: 8px;
       fill: #fff;
     }
     .side-section { margin-bottom: 12px; }
     .side-title {
-      font-size: 10pt;
+      font-size: 9pt;
       font-weight: 700;
-      letter-spacing: 1.5px;
+      letter-spacing: 1.2px;
       text-transform: uppercase;
       border-bottom: 1px solid rgba(255,255,255,0.45);
       padding-bottom: 4px;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
-    .edu-item { margin-bottom: 12px; }
+    .edu-item { margin-bottom: 8px; }
     .edu-item h4 {
-      font-size: 8.5pt;
+      font-size: 8pt;
       font-weight: 700;
       color: #fff;
       margin-bottom: 2px;
       line-height: 1.3;
     }
     .edu-item p {
-      font-size: 8pt;
+      font-size: 7.5pt;
       color: #d0d0d0;
-      line-height: 1.35;
+      line-height: 1.3;
     }
     .edu-item .loc {
       color: #a8a8a8;
-      font-size: 7.5pt;
+      font-size: 7pt;
     }
     .sub-title {
-      font-size: 8pt;
+      font-size: 7.5pt;
       font-weight: 700;
-      letter-spacing: 1px;
+      letter-spacing: 0.8px;
       text-transform: uppercase;
-      margin: 10px 0 5px;
+      margin: 8px 0 4px;
       color: #fff;
     }
     .side-list {
@@ -129,19 +128,19 @@
     }
     .side-list li {
       position: relative;
-      padding-left: 12px;
-      margin-bottom: 4px;
-      font-size: 8pt;
+      padding-left: 11px;
+      margin-bottom: 3px;
+      font-size: 7.5pt;
       color: #e0e0e0;
-      line-height: 1.35;
+      line-height: 1.3;
     }
     .side-list li::before {
       content: "";
       position: absolute;
       left: 0;
-      top: 6px;
-      width: 5px;
-      height: 5px;
+      top: 5px;
+      width: 4px;
+      height: 4px;
       border-radius: 50%;
       background: #c9a227;
     }
@@ -149,95 +148,128 @@
     /* ===== MAIN CONTENT ===== */
     .main {
       flex: 1;
-      padding: 14mm 12mm 10mm 11mm;
+      padding: 11mm 9mm 9mm;
       background: #fff;
     }
+    .main p { margin: 0; }
+    .main ul { margin-top: 0; margin-bottom: 0; }
     .name {
-      font-size: 28pt;
+      font-size: 24pt;
       font-weight: 700;
       line-height: 1.05;
-      margin-bottom: 4px;
-      letter-spacing: 0.5px;
+      margin-bottom: 3px;
+      letter-spacing: 0.4px;
     }
     .name .first { color: #111; }
     .name .last { color: #c11b1b; }
     .role {
-      font-size: 11pt;
+      font-size: 10pt;
       color: #444;
-      letter-spacing: 3px;
-      margin-bottom: 4px;
+      letter-spacing: 2.5px;
+      margin-bottom: 3px;
       font-weight: 500;
     }
     .open-badge {
       display: inline-block;
-      font-size: 8pt;
+      font-size: 7.5pt;
       color: #166534;
       font-weight: 600;
-      margin-bottom: 14px;
-      letter-spacing: 0.3px;
+      margin-bottom: 10px;
     }
-    .section { margin-bottom: 10px; }
-    .job { margin-bottom: 9px; }
-    .job li {
-      font-size: 8.2pt;
-      color: #333;
-      line-height: 1.35;
-      margin-bottom: 1px;
-    }
+    .section { margin-bottom: 6px; }
     .section-title {
-      font-size: 11pt;
+      font-size: 10pt;
       font-weight: 700;
-      letter-spacing: 2px;
+      letter-spacing: 1.5px;
       text-transform: uppercase;
       color: #c11b1b;
       border-bottom: 1px solid #d8d8d8;
-      padding-bottom: 4px;
-      margin-bottom: 8px;
+      padding-bottom: 2px;
+      margin-bottom: 4px;
     }
     .summary p {
-      font-size: 9pt;
-      line-height: 1.45;
+      font-size: 8.2pt;
+      line-height: 1.35;
       color: #333;
       text-align: justify;
     }
+    .job { margin-bottom: 5px; }
     .job-top {
       display: flex;
       justify-content: space-between;
       align-items: baseline;
-      gap: 10px;
+      gap: 8px;
     }
     .job-company {
-      font-size: 10pt;
+      font-size: 9.5pt;
       font-weight: 700;
       color: #111;
     }
     .job-dates {
-      font-size: 9pt;
+      font-size: 8.5pt;
       font-weight: 600;
       color: #444;
       white-space: nowrap;
     }
     .job-title {
-      font-size: 9.5pt;
+      font-size: 8.5pt;
       font-style: italic;
       color: #c11b1b;
-      margin: 1px 0 4px;
+      margin: 0 0 1px;
+      line-height: 1.25;
     }
     .job-desc {
-      font-size: 8.5pt;
-      color: #444;
-      line-height: 1.4;
-      margin-bottom: 4px;
+      font-size: 8pt;
+      color: #555;
+      line-height: 1.25;
+      margin: 0 0 1px;
     }
-    .job ul {
-      margin-left: 14px;
+    .job ul, .projects ul {
+      margin: 0 0 0 13px;
       padding: 0;
+    }
+    .job li, .projects li {
+      font-size: 8pt;
+      color: #333;
+      line-height: 1.25;
+      margin: 0;
+      padding: 0;
+    }
+
+    @media screen {
+      html, body {
+        width: 100%;
+        min-height: 100%;
+        overflow: auto;
+        background: #e8e8e8;
+      }
+      .page {
+        width: 210mm;
+        min-height: auto;
+        margin: 16px auto;
+        box-shadow: 0 2px 16px rgba(0,0,0,0.15);
+        align-items: stretch;
+      }
+    }
+
+    @media print {
+      html, body {
+        width: 210mm;
+        height: auto;
+        overflow: visible;
+        background: #fff;
+      }
+      .page {
+        min-height: 297mm;
+        height: auto;
+        box-shadow: none;
+        margin: 0;
+      }
     }
   </style>
 </head>
 <body>
   <div class="page">
-    <!-- LEFT SIDEBAR -->
     <aside class="sidebar">
       <div class="photo-wrap">
         <img src="../images/aa.png" alt="Amit Arya" />
@@ -271,7 +303,7 @@
         <div class="edu-item">
           <h4>Bachelor of Computer Application</h4>
           <p>Lovely Professional University</p>
-          <p class="loc">Phagwara, Punjab, INDIA</p>
+          <p class="loc">Phagwara, Punjab, India</p>
         </div>
         <div class="edu-item">
           <h4>Higher Secondary (+2)</h4>
@@ -302,9 +334,9 @@
           <li>SQLi / XSS / CSRF prevention</li>
           <li>Composer, PHPUnit, Redis, Git</li>
           <li>GitHub Actions, Nginx / Apache</li>
-          <li>AWS (EC2, RDS, S3, IAM — working knowledge)</li>
+          <li>AWS (EC2, RDS, S3, IAM)</li>
           <li>Cursor, Claude (Anthropic)</li>
-          <li>Laravel / Yii / CodeIgniter (as needed)</li>
+          <li>Laravel / Yii / CodeIgniter</li>
           <li>Docker, Linux / Bash</li>
         </ul>
 
@@ -313,18 +345,9 @@
           <li>Advance PHP/MySQL</li>
           <li>Laravel, AI Tools Workshop</li>
         </ul>
-
-        <div class="sub-title">Project</div>
-        <ul class="side-list">
-          <li><strong>Sajilo Restro</strong> — QR contactless restaurant ordering</li>
-          <li><strong>Clinic OS (Lighthouse)</strong> — therapy clinic OS</li>
-          <li><strong>Ledger Flow (BFMS)</strong> — bookkeeping firm management</li>
-          <li>POS, Ecommerce, CMS platforms</li>
-        </ul>
       </div>
     </aside>
 
-    <!-- RIGHT MAIN -->
     <main class="main">
       <div class="name">
         <span class="first">Amit</span> <span class="last">Arya</span>
@@ -346,15 +369,13 @@
         </div>
       </div>
 
-      <div class="section">
+      <div class="section projects">
         <div class="section-title">Recent Projects</div>
-        <div class="job">
-          <ul>
-            <li><strong>Sajilo Restro</strong> — QR-based contactless restaurant ordering (full-stack PHP / Vue)</li>
-            <li><strong>Clinic OS (Lighthouse)</strong> — therapy clinic operating system (React, Node, Postgres)</li>
-            <li><strong>Ledger Flow (BFMS)</strong> — bookkeeping firm management system</li>
-          </ul>
-        </div>
+        <ul>
+          <li><strong>Sajilo Restro</strong> — QR-based contactless restaurant ordering (full-stack PHP / Vue)</li>
+          <li><strong>Clinic OS (Lighthouse)</strong> — therapy clinic operating system (React, Node, Postgres)</li>
+          <li><strong>Ledger Flow (BFMS)</strong> — bookkeeping firm management system</li>
+        </ul>
       </div>
 
       <div class="section">
@@ -367,14 +388,13 @@
           </div>
           <div class="job-title">PHP Full Stack Engineer (remote; concurrent with Empire)</div>
           <p class="job-desc">
-            GBS is the billing and operations platform behind TestRail’s Customer Portal and Admin Panel
+            Billing and operations platform behind TestRail’s Customer Portal and Admin Panel
             (Idera / formerly Gurock Software).
           </p>
           <ul>
             <li>Owned end-to-end PHP/MySQL features for subscription, order, and license workflows.</li>
             <li>Integrated Stripe payments, AI Credits, and HubSpot/Zendesk APIs and webhooks.</li>
-            <li>Debugged production CRM sync and email delivery failures; hardened data handling and edge cases.</li>
-            <li>Applied secure coding practices — input validation, session handling, and least-privilege data access.</li>
+            <li>Debugged production CRM sync and email delivery failures; applied secure coding practices.</li>
           </ul>
         </div>
 
@@ -385,8 +405,8 @@
           </div>
           <div class="job-title">Team Lead</div>
           <p class="job-desc">
-            Australia/Nepal education consultancy; also involved in Nepal Premier League (Sudurpaschim Royals).
-            Lead delivery, technical direction, and team practices across web platforms (role overlaps Gurock engagement).
+            Australia/Nepal education consultancy; also involved in NPL (Sudurpaschim Royals).
+            Role overlaps with Gurock engagement.
           </p>
           <ul>
             <li>Lead feature delivery and code quality standards across PHP/MySQL web platforms.</li>
@@ -400,13 +420,10 @@
             <div class="job-dates">Aug 2022 – Feb 2024</div>
           </div>
           <div class="job-title">Web Developer</div>
-          <p class="job-desc">
-            US-based software company building developer tools and platform components.
-          </p>
+          <p class="job-desc">US-based software company building developer tools and platform components.</p>
           <ul>
             <li>Built microservices and reusable PHP packages; designed REST API contracts across services.</li>
-            <li>Full-stack delivery with PHP, MySQL, JavaScript, and jQuery/AJAX — independent feature ownership.</li>
-            <li>Used Composer, Git, and Redis; wrote technical notes before implementing non-trivial features.</li>
+            <li>Full-stack delivery with PHP, MySQL, JavaScript, and jQuery/AJAX.</li>
           </ul>
         </div>
 
@@ -416,9 +433,7 @@
             <div class="job-dates">Dec 2019 – Jun 2022</div>
           </div>
           <div class="job-title">Web Developer</div>
-          <p class="job-desc">
-            Technology startup focused on scalable IT solutions; product direction and web application delivery.
-          </p>
+          <p class="job-desc">Technology startup focused on scalable IT solutions and web application delivery.</p>
           <ul>
             <li>Designed MySQL schemas and shipped full-stack PHP applications; improved query performance.</li>
             <li>Built Bootstrap + jQuery/AJAX UIs; owned requirements-to-delivery for customer-facing tools.</li>
@@ -431,13 +446,10 @@
             <div class="job-dates">Oct 2014 – Sep 2019</div>
           </div>
           <div class="job-title">Sr. Programmer</div>
-          <p class="job-desc">
-            Global technology company (Japan HQ, Kathmandu branch). Deep foundation in PHP/MySQL production systems.
-          </p>
+          <p class="job-desc">Global technology company (Japan HQ, Kathmandu branch).</p>
           <ul>
             <li>5 years building PHP applications, MySQL schemas/indexes, and jQuery/AJAX + Bootstrap UIs.</li>
-            <li>Practiced secure coding — SQL injection prevention via prepared statements, XSS escaping, CSRF tokens.</li>
-            <li>Deployed and maintained apps on Linux with Nginx/Apache; used Git for version control.</li>
+            <li>Secure coding — prepared statements, XSS escaping, CSRF tokens; Linux Nginx/Apache deploys.</li>
           </ul>
         </div>
       </div>
