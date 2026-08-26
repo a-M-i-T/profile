@@ -81,7 +81,7 @@ export const experience = [
     role: "PHP Full Stack Engineer (Laravel) / Team Lead",
     period: "Feb 2024 – Jan 2025",
     note: "Contract · Kathmandu · On-site",
-    logo: null,
+    logo: asset("images/empire.png"),
     summary:
       "Australia/Nepal education consultancy. The group also owns Sudurpaschim Royals in the Nepal Premier League — I built the club website, I did not own the franchise.",
     points: [
@@ -107,7 +107,7 @@ export const experience = [
     role: "Senior Web Developer",
     period: "Mar 2017 – Jan 2024",
     note: "Part-time · alongside other roles",
-    logo: null,
+    logo: asset("images/aryaitandmedia.png"),
     summary:
       "Own studio, part-time on purpose — CMS, ecommerce, and custom PHP for clients while I held full-time jobs.",
     points: [
