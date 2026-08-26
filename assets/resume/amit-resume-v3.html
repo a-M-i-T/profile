@@ -231,9 +231,19 @@
     .job li, .projects li {
       font-size: 8pt;
       color: #333;
-      line-height: 1.25;
-      margin: 0;
+      line-height: 1.3;
+      margin: 0 0 1px;
       padding: 0;
+    }
+    .extra-list {
+      margin-left: 13px;
+      padding: 0;
+    }
+    .extra-list li {
+      font-size: 8pt;
+      color: #333;
+      line-height: 1.35;
+      margin-bottom: 3px;
     }
 
     @media screen {
@@ -345,6 +355,20 @@
           <li>Advance PHP/MySQL</li>
           <li>Laravel, AI Tools Workshop</li>
         </ul>
+
+        <div class="sub-title">Recent Projects</div>
+        <ul class="side-list">
+          <li><strong>Sajilo Restro</strong> — QR restaurant ordering</li>
+          <li><strong>Clinic OS</strong> — therapy clinic OS</li>
+          <li><strong>Ledger Flow</strong> — bookkeeping firm OS</li>
+          <li>POS, Ecommerce, CMS platforms</li>
+          <li>Sudurpaschim Royals cricket site</li>
+        </ul>
+
+        <div class="sub-title">Learning</div>
+        <ul class="side-list">
+          <li>Docker, Kubernetes &amp; AWS (Udemy — in progress)</li>
+        </ul>
       </div>
     </aside>
 
@@ -363,8 +387,9 @@
             Strong in PHP 8.x fundamentals (OOP, namespacing, sessions, PDO prepared statements), MySQL schema design,
             jQuery/AJAX/Fetch API, Bootstrap 5, and REST integrations. Prevents SQL injection, XSS, and CSRF; designs
             with ER diagrams and API contracts before coding. Recently shipped billing features on TestRail’s GBS
-            (subscriptions, Stripe, CRM sync). Uses Cursor and Claude (Anthropic) with security review gates —
-            architecture-first, not framework-dependent. AWS working knowledge: EC2, RDS, S3, IAM.
+            (subscriptions, Stripe, CRM sync). Also building hobby SaaS products (Sajilo Restro, Clinic OS).
+            Uses Cursor and Claude (Anthropic) with security review gates — architecture-first, not framework-dependent.
+            AWS working knowledge: EC2, RDS, S3, IAM.
           </p>
         </div>
       </div>
@@ -372,9 +397,11 @@
       <div class="section projects">
         <div class="section-title">Recent Projects</div>
         <ul>
-          <li><strong>Sajilo Restro</strong> — QR-based contactless restaurant ordering (full-stack PHP / Vue)</li>
-          <li><strong>Clinic OS (Lighthouse)</strong> — therapy clinic operating system (React, Node, Postgres)</li>
+          <li><strong>Sajilo Restro</strong> — QR-based contactless restaurant ordering (Laravel, Vue)</li>
+          <li><strong>Clinic OS (Lighthouse)</strong> — therapy clinic OS: protocols, beds/queue, NFC (React, Node, Postgres)</li>
           <li><strong>Ledger Flow (BFMS)</strong> — bookkeeping firm management system</li>
+          <li><strong>Sudurpaschim Royals</strong> — cricket club website (Empire / NPL)</li>
+          <li><strong>Tiun Tarkari</strong> — ecommerce + Laravel POS for online grocery</li>
         </ul>
       </div>
 
@@ -383,60 +410,73 @@
 
         <div class="job">
           <div class="job-top">
-            <div class="job-company">Gurock — TestRail (GBS)</div>
-            <div class="job-dates">2024 – 2025</div>
+            <div class="job-company">TestRail (GBS)</div>
+            <div class="job-dates">Feb 2025 – Apr 2026</div>
           </div>
-          <div class="job-title">PHP Full Stack Engineer (remote; concurrent with Empire)</div>
+          <div class="job-title">PHP Full Stack Engineer · Contract · Remote</div>
           <p class="job-desc">
-            Billing and operations platform behind TestRail’s Customer Portal and Admin Panel
-            (Idera / formerly Gurock Software).
+            Platform behind TestRail’s Customer Portal and Admin Panel — subscriptions, orders,
+            licensing, and internal admin workflows (PHP/CodeIgniter, MySQL).
           </p>
           <ul>
-            <li>Owned end-to-end PHP/MySQL features for subscription, order, and license workflows.</li>
-            <li>Integrated Stripe payments, AI Credits, and HubSpot/Zendesk APIs and webhooks.</li>
-            <li>Debugged production CRM sync and email delivery failures; applied secure coding practices.</li>
+            <li>Built billing features: Stripe payments, AI Credits tied to subscriptions/trials.</li>
+            <li>Integrated HubSpot and Zendesk; fixed production HubSpot sync and CRM email delivery.</li>
+            <li>Owned PHP/MySQL subscription, order, and license workflows end-to-end.</li>
           </ul>
         </div>
 
         <div class="job">
           <div class="job-top">
-            <div class="job-company">Empire International &amp; Empire Sports</div>
-            <div class="job-dates">Sep 2024 – Present</div>
+            <div class="job-company">Empire Intl / Sports</div>
+            <div class="job-dates">Feb 2024 – Jan 2025</div>
           </div>
-          <div class="job-title">Team Lead</div>
+          <div class="job-title">PHP Full Stack Engineer (Laravel) / Team Lead · Contract · Kathmandu</div>
           <p class="job-desc">
-            Australia/Nepal education consultancy; also involved in NPL (Sudurpaschim Royals).
-            Role overlaps with Gurock engagement.
+            Australia/Nepal education consultancy; NPL club owner (Sudurpaschim Royals).
           </p>
           <ul>
-            <li>Lead feature delivery and code quality standards across PHP/MySQL web platforms.</li>
-            <li>Drive AI-assisted development practices with review gates for correctness and security.</li>
+            <li>Delivered the Sudurpaschim Royals cricket club website end-to-end.</li>
+            <li>Led the team for smooth project execution across Laravel/Vue platforms.</li>
+            <li>Spearheaded a real estate web app, then handed over to partner developers.</li>
           </ul>
         </div>
 
         <div class="job">
           <div class="job-top">
-            <div class="job-company">Shubhu Tech Pvt. Ltd.</div>
+            <div class="job-company">Subhu Tech</div>
             <div class="job-dates">Aug 2022 – Feb 2024</div>
           </div>
-          <div class="job-title">Web Developer</div>
-          <p class="job-desc">US-based software company building developer tools and platform components.</p>
+          <div class="job-title">Web Developer · Full-time · Kathmandu</div>
+          <p class="job-desc">Full-stack work building microservices and custom Laravel packages.</p>
           <ul>
-            <li>Built microservices and reusable PHP packages; designed REST API contracts across services.</li>
-            <li>Full-stack delivery with PHP, MySQL, JavaScript, and jQuery/AJAX.</li>
+            <li>Broke applications into API-connected microservices for scale and maintainability.</li>
+            <li>Created reusable Laravel packages for auth, utilities, and API integrations.</li>
           </ul>
         </div>
 
         <div class="job">
           <div class="job-top">
-            <div class="job-company">Davariable Innovations</div>
+            <div class="job-company">Arya IT &amp; Media Pvt. Ltd.</div>
+            <div class="job-dates">Mar 2017 – Jan 2024</div>
+          </div>
+          <div class="job-title">Senior Web Developer · Part-time</div>
+          <ul>
+            <li>Delivered client web projects alongside other roles — CMS, ecommerce, and custom PHP apps.</li>
+          </ul>
+        </div>
+
+        <div class="job">
+          <div class="job-top">
+            <div class="job-company">daVariable Innovations</div>
             <div class="job-dates">Dec 2019 – Jun 2022</div>
           </div>
-          <div class="job-title">Web Developer</div>
-          <p class="job-desc">Technology startup focused on scalable IT solutions and web application delivery.</p>
+          <div class="job-title">Co-Founder · Part-time · Kathmandu</div>
+          <p class="job-desc">
+            Founded during COVID-19 to build scalable IT solutions (ecommerce, POS, and custom apps).
+          </p>
           <ul>
-            <li>Designed MySQL schemas and shipped full-stack PHP applications; improved query performance.</li>
-            <li>Built Bootstrap + jQuery/AJAX UIs; owned requirements-to-delivery for customer-facing tools.</li>
+            <li>Set vision and product direction; adapted strategy through pandemic market shifts.</li>
+            <li>Shipped full-stack PHP/MySQL applications and Bootstrap + jQuery/AJAX UIs.</li>
           </ul>
         </div>
 
@@ -445,13 +485,22 @@
             <div class="job-company">Miracle Interface</div>
             <div class="job-dates">Oct 2014 – Sep 2019</div>
           </div>
-          <div class="job-title">Sr. Programmer</div>
+          <div class="job-title">Senior Programmer · Full-time · Lalitpur</div>
           <p class="job-desc">Global technology company (Japan HQ, Kathmandu branch).</p>
           <ul>
-            <li>5 years building PHP applications, MySQL schemas/indexes, and jQuery/AJAX + Bootstrap UIs.</li>
-            <li>Secure coding — prepared statements, XSS escaping, CSRF tokens; Linux Nginx/Apache deploys.</li>
+            <li>Built Japan-origin web apps with PHP, Yii, CodeIgniter, Laravel, Node.js, and MySQL.</li>
+            <li>Mentored junior developers; WordPress themes/plugins and secure production practices.</li>
           </ul>
         </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Additional Work</div>
+        <ul class="extra-list">
+          <li><strong>CMS &amp; client sites</strong> — Bighnaharta Nepal, GetGo Adventures, Piubella, Sahakari Jal</li>
+          <li><strong>Commerce</strong> — Tiun Tarkari ecommerce and Laravel POS</li>
+          <li><strong>Plugins</strong> — Interactive JS Map of Nepal and World Map</li>
+        </ul>
       </div>
     </main>
   </div>

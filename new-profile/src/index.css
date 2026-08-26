@@ -1,0 +1,78 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Syne", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --color-ink: #070a08;
+  --color-ink-soft: #101612;
+  --color-fog: #e8f0e9;
+  --color-muted: #8a9a8e;
+  --color-lime: #c8f547;
+  --color-coral: #ff4d2e;
+  --color-line: rgba(232, 240, 233, 0.12);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  html.snap-active {
+    scroll-behavior: auto;
+  }
+
+  html.snap-active,
+  html.snap-active body {
+    height: 100%;
+    overflow: hidden;
+  }
+
+  html.snap-active .snap-viewport {
+    height: 100svh;
+    overflow: hidden;
+  }
+
+  html.snap-active .snap-track {
+    will-change: transform;
+  }
+
+  html.snap-active .snap-panel {
+    height: 100svh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(200, 245, 71, 0.4) transparent;
+  }
+
+  body {
+    @apply bg-ink text-fog font-sans antialiased;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 10% -10%, rgba(200, 245, 71, 0.12), transparent),
+      radial-gradient(ellipse 60% 40% at 100% 0%, rgba(255, 77, 46, 0.1), transparent);
+    background-attachment: fixed;
+  }
+
+  ::selection {
+    @apply bg-lime text-ink;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .mesh {
+    background:
+      linear-gradient(135deg, rgba(200, 245, 71, 0.15), transparent 40%),
+      linear-gradient(225deg, rgba(255, 77, 46, 0.12), transparent 45%),
+      repeating-linear-gradient(
+        -12deg,
+        transparent,
+        transparent 18px,
+        rgba(232, 240, 233, 0.03) 18px,
+        rgba(232, 240, 233, 0.03) 19px
+      );
+  }
+}
