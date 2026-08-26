@@ -30,10 +30,10 @@ export const skills = {
     "Production debugging on billing/CRM paths",
   ],
   backend: [
-    "PHP 8.x — OOP, namespaces, traits, interfaces",
-    "Raw PHP — request lifecycle, sessions, PDO",
-    "REST API design, Composer, PHPUnit",
-    "Laravel, Yii, CodeIgniter when the codebase requires them",
+    "PHP 8.x — OOP, namespaces, traits, interfaces, PDO, DTOs",
+    "Raw PHP — request lifecycle, sessions, prepared statements",
+    "Laravel packages — auth, utilities, API integrations",
+    "Laravel, Yii, CodeIgniter, Node.js · REST APIs, Composer, PHPUnit",
   ],
   database: [
     "MySQL — schema design, indexing, query optimisation",
@@ -42,9 +42,9 @@ export const skills = {
     "MongoDB",
   ],
   frontend: [
-    "JavaScript, Vue",
+    "JavaScript — React, Vue",
+    "Tailwind CSS, Bootstrap 5, HTML5 / CSS3",
     "jQuery / AJAX (Fetch & XHR) on production PHP UIs",
-    "Bootstrap 5, HTML5 / CSS3",
     "Progressive enhancement",
   ],
   security: [
