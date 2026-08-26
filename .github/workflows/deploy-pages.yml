@@ -24,7 +24,7 @@ jobs:
           node-version: 22
           cache: npm
           cache-dependency-path: new-profile/package-lock.json
-      - run: npm ci
+      - run: npm install
         working-directory: new-profile
       - run: npm run build
         working-directory: new-profile
