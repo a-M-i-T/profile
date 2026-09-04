@@ -11,6 +11,7 @@ export const profile = {
   github: "https://github.com/a-M-i-T",
   resume: asset("amit-resume-v3.pdf"),
   photo: asset("images/aa.png"),
+  lookVideo: asset("videos/amit-look.mp4"),
   tagline: "I ship production PHP platforms — billing, APIs, and secure full-stack features.",
   about:
     "10+ years building production web platforms in PHP and MySQL. Most recently I owned billing and admin work on TestRail’s GBS — subscriptions, Stripe, HubSpot, and Zendesk. I design schema and API contracts before writing code, and I treat security (SQLi, XSS, CSRF, sessions) as part of the feature, not a later pass.",
@@ -153,7 +154,7 @@ export type Project = {
   accent: "lime" | "coral"
 }
 
-export const projects: Project[] = [
+export const hobbyProjects: Project[] = [
   {
     title: "Sajilo Restro",
     blurb:
@@ -174,6 +175,9 @@ export const projects: Project[] = [
     href: null,
     accent: "coral" as const,
   },
+]
+
+export const projects: Project[] = [
   {
     title: "Sudurpaschim Royals",
     blurb: "Nepal Premier League club site — delivered end-to-end in Laravel for Empire Intl / Sports.",

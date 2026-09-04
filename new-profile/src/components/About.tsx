@@ -1,5 +1,6 @@
-import { motion } from "framer-motion"
+import { amitLookPaths } from "../amitLookGaze"
 import { profile } from "../data"
+import { CursorScrubVideo } from "./CursorScrubVideo"
 import { Reveal } from "./Reveal"
 
 export function About() {
@@ -31,21 +32,19 @@ export function About() {
 
         <Reveal delay={0.1} className="relative">
           <div className="absolute -inset-3 rounded-[2rem] bg-gradient-to-br from-lime/30 via-transparent to-coral/30 blur-xl" />
-          <motion.div
-            whileHover={{ rotate: -1.5, scale: 1.02 }}
-            transition={{ type: "spring", stiffness: 260, damping: 18 }}
-            className="relative overflow-hidden rounded-[1.75rem] border border-line bg-ink-soft"
-          >
-            <img
-              src={profile.photo}
-              alt="Amit Arya"
-              className="aspect-[4/5] w-full object-cover grayscale transition duration-500 hover:grayscale-0"
-            />
-            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink via-ink/60 to-transparent p-6">
+          <div className="relative overflow-hidden rounded-[1.75rem] border border-line bg-ink-soft">
+            <div className="aspect-[4/5] w-full">
+              <CursorScrubVideo
+                src={profile.lookVideo}
+                gazePaths={amitLookPaths}
+                trackingArea="window"
+              />
+            </div>
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink via-ink/60 to-transparent p-6">
               <p className="font-display text-2xl font-bold text-fog">10+ years</p>
               <p className="text-sm text-muted">PHP · MySQL · Full-stack delivery</p>
             </div>
-          </motion.div>
+          </div>
         </Reveal>
       </div>
     </section>

@@ -1,6 +1,40 @@
+import { useState } from "react"
 import { motion } from "framer-motion"
 import { experience } from "../data"
 import { itemVariants, Reveal, Stagger } from "./Reveal"
+
+function keepsDarkCard(company: string, logo: string) {
+  const haystack = `${company} ${logo}`.toLowerCase()
+  return haystack.includes("empire") || haystack.includes("aryaitandmedia")
+}
+
+function JobLogo({ company, logo }: { company: string; logo: string | null }) {
+  const [failed, setFailed] = useState(false)
+  const label = company.split(/[\s/]/)[0]
+
+  if (!logo || failed) {
+    return (
+      <div className="flex h-20 w-28 items-center justify-center rounded-2xl border border-dashed border-line bg-ink-soft px-2 text-center text-[10px] uppercase tracking-wider text-muted">
+        {label}
+      </div>
+    )
+  }
+
+  return (
+    <div
+      className={`flex h-20 w-28 items-center justify-center overflow-hidden rounded-2xl border border-line p-2 ${
+        keepsDarkCard(company, logo) ? "bg-ink" : "bg-white"
+      }`}
+    >
+      <img
+        src={logo}
+        alt={`${company} logo`}
+        className="max-h-full max-w-full object-contain"
+        onError={() => setFailed(true)}
+      />
+    </div>
+  )
+}
 
 export function Experience() {
   return (
@@ -22,19 +56,7 @@ export function Experience() {
             <div className="text-sm text-muted md:pt-3">{job.period}</div>
 
             <div className="flex items-start">
-              {job.logo ? (
-                <div className="flex h-20 w-28 items-center justify-center overflow-hidden rounded-2xl border border-line bg-white p-2">
-                  <img
-                    src={job.logo}
-                    alt={`${job.company} logo`}
-                    className="max-h-full max-w-full object-contain"
-                  />
-                </div>
-              ) : (
-                <div className="flex h-20 w-28 items-center justify-center rounded-2xl border border-dashed border-line bg-ink-soft px-2 text-center text-[10px] uppercase tracking-wider text-muted">
-                  {job.company.split(/[\s/]/)[0]}
-                </div>
-              )}
+              <JobLogo company={job.company} logo={job.logo} />
             </div>
 
             <div>
