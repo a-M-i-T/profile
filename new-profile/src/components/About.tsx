@@ -38,7 +38,7 @@ export function About() {
                 src={profile.lookVideo}
                 gazePaths={amitLookPaths}
                 trackingArea="window"
-                follow={3.6}
+                follow={7.5}
               />
             </div>
             <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink via-ink/60 to-transparent p-6">

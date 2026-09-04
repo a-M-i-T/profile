@@ -24,26 +24,40 @@ type CursorScrubVideoProps = {
 }
 
 const FPS = 24
-const SIDE_HYSTERESIS = 0.05
+const SIDE_HYSTERESIS = 0.07
 const LEFT_SPAN = 0.36
 const DOWN_ENTER = 0.62
 const DOWN_LEAVE = 0.5
 const UP_ENTER = 0.36
 const UP_LEAVE = 0.46
-const CENTER_ENTER = 0.14
-const CENTER_LEAVE = 0.28
+const CENTER_ENTER = 0.16
+const CENTER_LEAVE = 0.34
+const TAKE_DWELL_MS = 40
+const SCRUB_FOLLOW = 14
+const NEAR_FRAMES = 12
 
 function clamp01(value: number) {
   return Math.max(0, Math.min(1, value))
 }
 
-function easeInOut(t: number) {
-  const x = clamp01(t)
-  return x < 0.5 ? 2 * x * x : 1 - ((-2 * x + 2) ** 2) / 2
+function frameAlongPath(path: GazePath, t: number) {
+  return path.start + clamp01(t) * (path.end - path.start)
 }
 
-function frameAlongPath(path: GazePath, t: number, ease: (t: number) => number) {
-  return path.start + ease(clamp01(t)) * (path.end - path.start)
+function takeOf(frame: number) {
+  if (frame >= 0 && frame <= 16) return "center"
+  if (frame >= 24 && frame <= 64) return "upRight"
+  if (frame >= 65 && frame <= 82) return "upLeft"
+  if (frame >= 98 && frame <= 115) return "down"
+  if (frame >= 116 && frame <= 130) return "right"
+  if (frame >= 150 && frame <= 172) return "left"
+  if (frame >= 173 && frame <= 204) return "downLeft"
+  return "other"
+}
+
+function canLerp(a: number, b: number) {
+  const left = takeOf(a)
+  return (left !== "other" && left === takeOf(b)) || Math.abs(a - b) <= NEAR_FRAMES
 }
 
 function pickPathFrame(
@@ -67,43 +81,31 @@ function pickPathFrame(
   else if (pitch.current === "down" && y < DOWN_LEAVE) pitch.current = "level"
 
   if (center.current && paths.center) {
-    return frameAlongPath(paths.center, 0.5, easeInOut)
+    return frameAlongPath(paths.center, 0.5)
   }
 
   if (pitch.current === "up") {
     const lift = (UP_LEAVE - y) / UP_LEAVE
     if (side.current === "left" || x < 0.5) {
-      return frameAlongPath(paths.upLeft, Math.max((0.5 - x) / 0.5, lift), easeInOut)
+      return frameAlongPath(paths.upLeft, Math.max((0.5 - x) / 0.5, lift))
     }
-    return frameAlongPath(paths.upRight, Math.max((x - 0.5) / 0.5, lift), easeInOut)
+    return frameAlongPath(paths.upRight, Math.max((x - 0.5) / 0.5, lift))
   }
 
   if (pitch.current === "down" && (side.current === "left" || x < 0.5)) {
     const across = (0.5 - x) / 0.5
     const drop = (y - DOWN_ENTER) / (1 - DOWN_ENTER)
-    return frameAlongPath(paths.downLeft, Math.max(across, drop), easeInOut)
+    return frameAlongPath(paths.downLeft, Math.max(across, drop))
   }
 
   if (side.current === "left") {
-    return frameAlongPath(paths.left, (0.5 - x) / LEFT_SPAN, easeInOut)
+    return frameAlongPath(paths.left, (0.5 - x) / LEFT_SPAN)
   }
-  return frameAlongPath(paths.right, (x - 0.5) / 0.5, easeInOut)
+  return frameAlongPath(paths.right, (x - 0.5) / 0.5)
 }
 
 function frameTime(frame: number, duration: number) {
   return Math.min(duration, Math.max(0, frame / FPS + 1 / FPS / 4))
-}
-
-function whenFramePainted(video: HTMLVideoElement, onPaint: () => void) {
-  const rvfc = video.requestVideoFrameCallback?.bind(video)
-  if (rvfc) {
-    const id = rvfc(() => onPaint())
-    return () => video.cancelVideoFrameCallback?.(id)
-  }
-  const id = window.requestAnimationFrame(() => {
-    window.requestAnimationFrame(onPaint)
-  })
-  return () => window.cancelAnimationFrame(id)
 }
 
 export function CursorScrubVideo({
@@ -111,33 +113,31 @@ export function CursorScrubVideo({
   axis = "horizontal",
   reverse = false,
   trackingArea = "window",
-  follow = 3.6,
+  follow = 7.5,
   gazePaths,
   className = "",
 }: CursorScrubVideoProps) {
   const rootRef = useRef<HTMLDivElement | null>(null)
-  const layerARef = useRef<HTMLVideoElement | null>(null)
-  const layerBRef = useRef<HTMLVideoElement | null>(null)
-  const activeRef = useRef<0 | 1>(0)
+  const videoRef = useRef<HTMLVideoElement | null>(null)
   const targetXRef = useRef(0.5)
   const targetYRef = useRef(0.5)
   const smoothedXRef = useRef(0.5)
   const smoothedYRef = useRef(0.5)
-  const shownFrameRef = useRef(8)
+  const playheadRef = useRef(8)
+  const heldGoalRef = useRef(8)
+  const pendingTakeRef = useRef<string | null>(null)
+  const pendingSinceRef = useRef(0)
   const durationRef = useRef(0)
   const lastTickRef = useRef(0)
   const rafRef = useRef<number | null>(null)
-  const fadingRef = useRef(false)
   const seekingRef = useRef(false)
-  const queuedTakeRef = useRef<number | null>(null)
+  const queuedTimeRef = useRef<number | null>(null)
   const sideRef = useRef<"left" | "right">("right")
   const pitchRef = useRef<"up" | "level" | "down">("level")
   const centerRef = useRef(true)
   const reduceMotionRef = useRef(false)
   const primedRef = useRef(false)
   const [isReady, setIsReady] = useState(false)
-
-  const layers = () => [layerARef.current, layerBRef.current] as const
 
   const updateTargetFromPointer = useCallback(
     (clientX: number, clientY: number) => {
@@ -183,67 +183,49 @@ export function CursorScrubVideo({
   }, [])
 
   useEffect(() => {
-    const a = layerARef.current
-    const b = layerBRef.current
-    if (!a || !b) return
+    const video = videoRef.current
+    if (!video) return
 
     setIsReady(false)
-    shownFrameRef.current = 8
+    playheadRef.current = 8
+    heldGoalRef.current = 8
     targetXRef.current = 0.5
     targetYRef.current = 0.5
     smoothedXRef.current = 0.5
     smoothedYRef.current = 0.5
-    activeRef.current = 0
-    fadingRef.current = false
     seekingRef.current = false
-    queuedTakeRef.current = null
+    queuedTimeRef.current = null
     primedRef.current = false
+    pendingTakeRef.current = null
+    pendingSinceRef.current = 0
     sideRef.current = "right"
     pitchRef.current = "level"
     centerRef.current = true
-    a.style.opacity = "1"
-    b.style.opacity = "0"
 
     let primed = false
     const onReady = () => {
-      const duration = a.duration || b.duration
+      const duration = video.duration
       if (primed || !Number.isFinite(duration) || duration <= 0) return
       primed = true
       durationRef.current = duration
       const rest = frameTime(8, duration)
-      const prime = (video: HTMLVideoElement) => {
-        video
-          .play()
-          .then(() => {
-            video.pause()
-            video.currentTime = rest
-            primedRef.current = true
-            setIsReady(true)
-          })
-          .catch(() => {
-            video.pause()
-            video.currentTime = rest
-            primedRef.current = true
-            setIsReady(true)
-          })
+      const finishPrime = () => {
+        video.pause()
+        video.currentTime = rest
+        primedRef.current = true
+        setIsReady(true)
       }
-      prime(a)
-      prime(b)
+      video.play().then(finishPrime).catch(finishPrime)
     }
 
-    a.addEventListener("loadedmetadata", onReady)
-    b.addEventListener("loadedmetadata", onReady)
-    a.addEventListener("canplay", onReady)
-    b.addEventListener("canplay", onReady)
-    if (a.readyState >= 1 || b.readyState >= 1) onReady()
+    video.addEventListener("loadedmetadata", onReady)
+    video.addEventListener("canplay", onReady)
+    if (video.readyState >= 1) onReady()
 
     return () => {
-      a.pause()
-      b.pause()
-      a.removeEventListener("loadedmetadata", onReady)
-      b.removeEventListener("loadedmetadata", onReady)
-      a.removeEventListener("canplay", onReady)
-      b.removeEventListener("canplay", onReady)
+      video.pause()
+      video.removeEventListener("loadedmetadata", onReady)
+      video.removeEventListener("canplay", onReady)
     }
   }, [src])
 
@@ -262,101 +244,63 @@ export function CursorScrubVideo({
 
   useEffect(() => {
     let cancelled = false
-    let cancelPaint: (() => void) | null = null
-    let seekVideo: HTMLVideoElement | null = null
     let onSeeked: (() => void) | null = null
     let failsafe = 0
 
-    const abortSwap = () => {
-      if (seekVideo && onSeeked) seekVideo.removeEventListener("seeked", onSeeked)
-      cancelPaint?.()
+    const clearSeekWait = () => {
+      const video = videoRef.current
+      if (video && onSeeked) video.removeEventListener("seeked", onSeeked)
       if (failsafe) window.clearTimeout(failsafe)
-      cancelPaint = null
-      seekVideo = null
       onSeeked = null
       failsafe = 0
     }
 
-    const reveal = (index: 0 | 1, frame: number) => {
-      const [a, b] = layers()
-      if (!a || !b) return
-      const front = index === 0 ? a : b
-      const back = index === 0 ? b : a
-      front.style.opacity = "1"
-      front.style.zIndex = "2"
-      back.style.opacity = "0"
-      back.style.zIndex = "1"
-      activeRef.current = index
-      shownFrameRef.current = frame
-      fadingRef.current = false
-      seekingRef.current = false
-    }
+    const applySeek = (time: number) => {
+      const video = videoRef.current
+      if (!video || cancelled) return
+      const next = Math.min(durationRef.current, Math.max(0, time))
 
-    const swapTo = (frame: number) => {
-      const [a, b] = layers()
-      if (!a || !b || cancelled) return
-      const duration = durationRef.current
-      if (duration <= 0) return
-
-      if (fadingRef.current) {
-        queuedTakeRef.current = frame
+      if (seekingRef.current) {
+        queuedTimeRef.current = next
         return
       }
 
-      if (Math.round(frame) === Math.round(shownFrameRef.current)) return
+      if (Math.abs(video.currentTime - next) < 0.012) return
 
-      const backIndex: 0 | 1 = activeRef.current === 0 ? 1 : 0
-      const back = backIndex === 0 ? a : b
-      const time = frameTime(frame, duration)
-
-      fadingRef.current = true
-      queuedTakeRef.current = null
-      let settled = false
+      seekingRef.current = true
+      queuedTimeRef.current = null
 
       const finish = () => {
-        if (settled || cancelled) return
-        settled = true
-        abortSwap()
-        reveal(backIndex, frame)
-        const queued = queuedTakeRef.current
-        queuedTakeRef.current = null
-        if (queued !== null && Math.round(queued) !== Math.round(frame)) {
-          swapTo(queued)
+        if (cancelled) return
+        clearSeekWait()
+        seekingRef.current = false
+        const queued = queuedTimeRef.current
+        queuedTimeRef.current = null
+        if (queued !== null && Math.abs(queued - video.currentTime) > 0.012) {
+          applySeek(queued)
         }
       }
 
-      onSeeked = () => {
-        if (cancelled) return
-        seekVideo?.removeEventListener("seeked", onSeeked!)
-        onSeeked = null
-        cancelPaint = whenFramePainted(back, finish)
-      }
-      seekVideo = back
-      back.addEventListener("seeked", onSeeked)
-      failsafe = window.setTimeout(finish, 400)
-
-      if (Math.abs(back.currentTime - time) < 1 / FPS / 2) {
-        onSeeked()
-      } else {
-        back.currentTime = time
-      }
+      onSeeked = finish
+      video.addEventListener("seeked", finish)
+      failsafe = window.setTimeout(finish, 90)
+      video.currentTime = next
     }
 
     const tick = (now: number) => {
-      const [a, b] = layers()
-      const front = activeRef.current === 0 ? a : b
+      const video = videoRef.current
       const duration = durationRef.current
       const last = lastTickRef.current || now
       lastTickRef.current = now
       const dt = Math.min(0.05, (now - last) / 1000)
 
-      if (front && duration > 0 && primedRef.current && !reduceMotionRef.current) {
+      if (video && duration > 0 && primedRef.current && !reduceMotionRef.current) {
         const k = 1 - Math.exp(-follow * dt)
         smoothedXRef.current += (targetXRef.current - smoothedXRef.current) * k
         smoothedYRef.current += (targetYRef.current - smoothedYRef.current) * k
 
         const lastFrame = Math.max(0, Math.round(duration * FPS) - 1)
-        const frame = gazePaths
+        let goal = gazePaths
           ? pickPathFrame(
               smoothedXRef.current,
               smoothedYRef.current,
@@ -367,9 +311,31 @@ export function CursorScrubVideo({
             )
           : smoothedXRef.current * lastFrame
 
-        if (Math.round(frame) !== Math.round(shownFrameRef.current)) {
-          swapTo(frame)
+        const playhead = playheadRef.current
+        if (!canLerp(playhead, goal)) {
+          const take = takeOf(goal)
+          if (pendingTakeRef.current !== take) {
+            pendingTakeRef.current = take
+            pendingSinceRef.current = now
+          }
+          if (now - pendingSinceRef.current < TAKE_DWELL_MS) {
+            goal = heldGoalRef.current
+          } else {
+            playheadRef.current = goal
+            heldGoalRef.current = goal
+            pendingTakeRef.current = take
+            applySeek(frameTime(goal, duration))
+            rafRef.current = window.requestAnimationFrame(tick)
+            return
+          }
+        } else {
+          pendingTakeRef.current = takeOf(goal)
+          heldGoalRef.current = goal
         }
+
+        const scrub = 1 - Math.exp(-SCRUB_FOLLOW * dt)
+        playheadRef.current += (goal - playheadRef.current) * scrub
+        applySeek(frameTime(playheadRef.current, duration))
       }
 
       rafRef.current = window.requestAnimationFrame(tick)
@@ -378,36 +344,22 @@ export function CursorScrubVideo({
     rafRef.current = window.requestAnimationFrame(tick)
     return () => {
       cancelled = true
-      abortSwap()
+      clearSeekWait()
       if (rafRef.current !== null) window.cancelAnimationFrame(rafRef.current)
       rafRef.current = null
     }
   }, [follow, gazePaths])
 
-  const videoClass =
-    "absolute inset-0 h-full w-full object-cover object-[center_18%]"
-
   return (
     <div ref={rootRef} className={`relative h-full w-full overflow-hidden bg-ink ${className}`}>
       <video
-        ref={layerARef}
+        ref={videoRef}
         src={src}
         muted
         playsInline
         preload="auto"
         disableRemotePlayback
-        className={videoClass}
-        style={{ opacity: 1, zIndex: 2 }}
-      />
-      <video
-        ref={layerBRef}
-        src={src}
-        muted
-        playsInline
-        preload="auto"
-        disableRemotePlayback
-        className={videoClass}
-        style={{ opacity: 0, zIndex: 1 }}
+        className="absolute inset-0 h-full w-full object-cover object-[center_18%]"
       />
       {!isReady ? (
         <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-ink/50 text-xs text-muted">
