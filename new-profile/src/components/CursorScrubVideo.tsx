@@ -256,11 +256,12 @@ export function CursorScrubVideo({
     const onMove = (event: PointerEvent) => {
       updateTargetFromPointer(event.clientX, event.clientY)
     }
-    window.addEventListener("pointermove", onMove, { passive: true, capture: true })
-    window.addEventListener("mousemove", onMove, { passive: true, capture: true })
+    const moveOpts: AddEventListenerOptions = { passive: true, capture: true }
+    window.addEventListener("pointermove", onMove, moveOpts)
+    window.addEventListener("mousemove", onMove, moveOpts)
     return () => {
-      window.removeEventListener("pointermove", onMove, { capture: true })
-      window.removeEventListener("mousemove", onMove, { capture: true })
+      window.removeEventListener("pointermove", onMove, moveOpts)
+      window.removeEventListener("mousemove", onMove, moveOpts)
     }
   }, [updateTargetFromPointer])
 
